@@ -1,9 +1,15 @@
 class Season extends React.Component { 
+  handleClick(e) {
+    e.preventDefault(); 
+  }
+
   render() {
     return( 
-      <div class="season">
-        <h4>{this.props.season.name}</h4>
-      </div>
+      <a onClick={this.handleClick} style={{cursor: "pointer"}}>
+        <div className="season">
+          <p>{this.props.season.name}</p>
+        </div>
+      </a>
     )
   }
 }
