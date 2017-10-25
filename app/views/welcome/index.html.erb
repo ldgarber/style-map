@@ -1,3 +1,14 @@
-<h1>Hi</h1>
+<%= react_component("Welcome", {user: current_user.email}) %> 
 
-<%= react_component("HelloWorld", {greeting: "hello"}) %> 
+<% if current_user.seasons_count == 0 %> 
+  <h3>Looks like you don't have any seasons yet. Start adding them below.</h3>
+  
+  <%= render 'seasons/form', season: Season.new %>  
+<% else %> 
+  <%#= react_component("CollectionGrid", {collection: current_user.seasons}) %>
+  <% current_user.seasons.each do |season| %>
+    <%= react_component("Season", {season: season}) %>
+  <% end %> 
+  <h3>Add another season?</h3>
+  <%= render 'seasons/form', season: Season.new %>
+<% end %> 
